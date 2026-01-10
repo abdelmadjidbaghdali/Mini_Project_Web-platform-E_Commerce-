@@ -1,0 +1,74 @@
+/* product catalogue ratings (static)*/
+.ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: #666666;
+  overflow: hidden;
+}
+
+.full-stars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.empty-stars:before,
+.full-stars:before {
+  content: "\2605\2605\2605\2605\2605";
+  font-size: 14pt;
+}
+
+.empty-stars:before {
+  -webkit-text-stroke: 1px #555555;
+  color: #555555;
+}
+
+.full-stars:before {
+  -webkit-text-stroke: 1px #00ffff;
+}
+
+/* review page ratings (clickable) */
+.rate {
+  float: left;
+  height: 76px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 50px;
+  color: #666666;
+  transition: color 200ms ease;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #00cc99;
+  text-shadow: 0 0 10px rgba(0, 204, 153, 0.5);
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #0099ff;
+  text-shadow: 0 0 15px rgba(0, 153, 255, 0.7);
+}

@@ -1,0 +1,49 @@
+/* nav - Legacy styles (superseded by header-footer.css) */
+/* Keep only essential non-visual properties */
+
+nav {
+  line-height: 80px;
+  z-index: 5050;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav {
+  line-height: 80px;
+  z-index: 9999;
+  position: relative;
+}
+
+/* Legacy support - page underline functionality */
+.page_underline {
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.underline {
+  font-weight: 600;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Legacy support - nav links */
+nav a, .nav a {
+  color: #ffffff !important;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, text-shadow 180ms ease;
+}
+
+nav a:hover, nav a:focus, .nav a:hover, .nav a:focus {
+  outline: none;
+  transform: translateY(-2px);
+  color: #00ffff !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+@media (max-width: 900px) {
+  nav { line-height: 70px; }
+  .nav { top: 0; }
+}
+

@@ -1,0 +1,15 @@
+/* soft blue glow */
+.glow-image {
+  animation: imageGlowBlue 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes imageGlowBlue {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(120, 180, 255, 0.4));
+    opacity: 0.85;
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(120, 180, 255, 0.7));
+    opacity: 1;
+  }
+}

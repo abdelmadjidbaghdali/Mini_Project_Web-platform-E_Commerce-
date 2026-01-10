@@ -1,0 +1,787 @@
+/* ============================================
+   GAMER-STYLE LOGIN & SIGNUP FORMS
+   Purple-to-Blue Gradient | Neon Effects
+   ============================================ */
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes gradient-pulse {
+  0%, 100% { 
+    background-position: 0% 50%;
+  }
+  50% { 
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes neon-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(0, 255, 255, 0.5),
+      0 0 20px rgba(138, 43, 226, 0.3),
+      inset 0 0 10px rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.8),
+      0 0 40px rgba(138, 43, 226, 0.5),
+      inset 0 0 20px rgba(0, 255, 255, 0.2);
+  }
+}
+
+@keyframes float-up {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(5px);
+  }
+}
+
+@keyframes hex-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(10px, -10px) rotate(180deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+@keyframes neon-line-sweep {
+  0% {
+    transform: translateX(-100%) scaleX(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) scaleX(1);
+  }
+}
+
+@keyframes button-glow-expand {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes input-focus-glow {
+  0%, 100% {
+    opacity: 0;
+    width: 0;
+  }
+  50% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+/* ============ VARIABLES & GLOBALS ============ */
+
+:root {
+  --color-purple-dark: #2d0a52;
+  --color-purple-med: #4a1d7f;
+  --color-blue-dark: #0f1a4d;
+  --color-blue-light: #1e3a8a;
+  --color-cyan: #00ffff;
+  --color-magenta: #ff00ff;
+  --color-green: #00ff00;
+  --color-bg-dark: #0a0520;
+  
+  --shadow-neon: 0 0 20px rgba(0, 255, 255, 0.4), 
+                 0 0 40px rgba(138, 43, 226, 0.2);
+  --shadow-neon-strong: 0 0 30px rgba(0, 255, 255, 0.6),
+                        0 0 60px rgba(138, 43, 226, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  background: linear-gradient(-45deg, 
+    #0a0520 0%,
+    #1a0a3e 25%,
+    #2d0a52 50%,
+    #1a0a3e 75%,
+    #0a0520 100%);
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+/* ============ GAMING BACKGROUND EFFECTS ============ */
+
+.gaming-bg-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Hexagon Grid Background */
+.hex-grid {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.05;
+  background-image: 
+    linear-gradient(30deg, transparent 24%, var(--color-cyan) 25%, var(--color-cyan) 26%, transparent 27%, transparent 74%, var(--color-cyan) 75%, var(--color-cyan) 76%, transparent 77%, transparent),
+    linear-gradient(60deg, transparent 24%, var(--color-magenta) 25%, var(--color-magenta) 26%, transparent 27%, transparent 74%, var(--color-magenta) 75%, var(--color-magenta) 76%, transparent 77%, transparent);
+  background-size: 50px 100px;
+  background-position: 0 0, 25px 50px;
+  animation: hex-float 20s linear infinite;
+}
+
+/* Neon Lines */
+.neon-line {
+  position: absolute;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-cyan),
+    transparent);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.neon-line-1 {
+  width: 150%;
+  height: 2px;
+  top: 25%;
+  left: -50%;
+  animation: neon-line-sweep 8s ease-in-out infinite;
+}
+
+.neon-line-2 {
+  width: 150%;
+  height: 2px;
+  top: 75%;
+  left: -50%;
+  animation: neon-line-sweep 8s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* Floating Particles */
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, 
+    rgba(0, 255, 255, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: hex-float 30s ease-in-out infinite;
+}
+
+.floating-particles::before {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-particles::after {
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 15s;
+}
+
+/* ============ MAIN AUTH CONTAINER ============ */
+
+.gamer-auth-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1;
+}
+
+/* ============ FORM STYLING ============ */
+
+.gamer-form {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  animation: float-up 0.8s ease-out;
+}
+
+.gamer-form-signup {
+  max-width: 500px;
+}
+
+.form-content {
+  background: linear-gradient(135deg, 
+    rgba(20, 10, 40, 0.95) 0%,
+    rgba(45, 10, 82, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 50px 40px 40px;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 0 60px rgba(138, 43, 226, 0.1),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, 
+    rgba(0, 255, 255, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ============ AUTH HEADER ============ */
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.gamer-title {
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.neon-text {
+  display: block;
+  background: linear-gradient(135deg, #00ffff, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  animation: gradient-pulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+}
+
+.gamer-subtitle {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(138, 43, 226, 0.9);
+  letter-spacing: 2px;
+  margin-top: 5px;
+  text-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+}
+
+.header-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-cyan), 
+    var(--color-magenta), 
+    transparent);
+  margin: 20px auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+/* ============ FORM GROUPS & INPUTS ============ */
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon-wrapper {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: var(--color-cyan);
+  filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+}
+
+.input-icon {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.label-text {
+  transition: all 0.3s ease;
+}
+
+.gamer-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #ffffff;
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.05) 0%,
+    rgba(138, 43, 226, 0.03) 100%);
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.gamer-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.gamer-input:focus {
+  border-color: var(--color-cyan);
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.1) 0%,
+    rgba(138, 43, 226, 0.08) 100%);
+  box-shadow: 
+    0 0 0 3px rgba(0, 255, 255, 0.1),
+    0 0 15px rgba(0, 255, 255, 0.4),
+    inset 0 0 10px rgba(0, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.gamer-input:not(:placeholder-shown) {
+  border-color: var(--color-cyan);
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.08) 0%,
+    rgba(138, 43, 226, 0.05) 100%);
+}
+
+.gamer-input:focus ~ .input-label {
+  color: var(--color-cyan);
+}
+
+.input-glow {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    var(--color-cyan), 
+    var(--color-magenta));
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+
+.gamer-input:focus ~ .input-glow {
+  width: 100%;
+  animation: input-focus-glow 0.3s ease;
+}
+
+.field-hint {
+  display: block;
+  font-size: 12px;
+  color: rgba(0, 255, 255, 0.6);
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ============ ERROR & SUCCESS MESSAGES ============ */
+
+.error-container {
+  margin: 20px 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.error-box,
+.success-box {
+  padding: 14px 16px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  animation: float-up 0.4s ease-out;
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+}
+
+.error-box {
+  background: linear-gradient(135deg,
+    rgba(255, 0, 100, 0.15) 0%,
+    rgba(255, 0, 50, 0.08) 100%);
+  border-color: rgba(255, 70, 130, 0.8);
+  color: #ff7f99;
+  box-shadow: 0 0 15px rgba(255, 0, 100, 0.2);
+}
+
+.error-box p {
+  margin: 0;
+  color: #ff6b82;
+}
+
+.success-box {
+  background: linear-gradient(135deg,
+    rgba(0, 255, 100, 0.15) 0%,
+    rgba(0, 255, 150, 0.08) 100%);
+  border-color: rgba(0, 255, 150, 0.8);
+  color: #7fff7f;
+  box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+}
+
+.success-box p {
+  margin: 5px 0;
+  color: #7fff7f;
+}
+
+/* ============ BUTTONS ============ */
+
+.gamer-button {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  z-index: 1;
+}
+
+.gamer-button-primary {
+  background: linear-gradient(135deg,
+    #00ffff 0%,
+    #00ff88 50%,
+    #00ffff 100%);
+  background-size: 200% 200%;
+  color: #0a0520;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.4),
+    0 0 40px rgba(0, 255, 255, 0.2),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  text-shadow: none;
+}
+
+.gamer-button-primary:hover {
+  background-position: 100% 0%;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.8),
+    0 0 60px rgba(0, 255, 255, 0.4),
+    0 0 100px rgba(138, 43, 226, 0.2),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.gamer-button-primary:active {
+  transform: translateY(0px);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.6),
+    0 0 40px rgba(138, 43, 226, 0.2),
+    inset 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.3) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.gamer-button-primary:hover .button-glow {
+  animation: button-glow-expand 0.6s ease-out;
+}
+
+/* ============ AUTH FOOTER ============ */
+
+.auth-footer {
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.auth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-cyan);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+}
+
+.auth-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.1) 0%,
+    rgba(138, 43, 226, 0.05) 100%);
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.auth-link:hover {
+  color: var(--color-magenta);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+.auth-link:hover::before {
+  opacity: 1;
+}
+
+.link-arrow {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.auth-link:hover .link-arrow {
+  transform: translateX(3px);
+}
+
+/* ============ RESPONSIVENESS ============ */
+
+@media (max-width: 768px) {
+  .gamer-form {
+    max-width: 100%;
+  }
+
+  .gamer-form-signup {
+    max-width: 100%;
+  }
+
+  .form-content {
+    padding: 40px 30px 30px;
+    border-radius: 12px;
+  }
+
+  .gamer-title {
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+
+  .gamer-subtitle {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .input-label {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .gamer-input {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .gamer-button {
+    padding: 14px 20px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gamer-auth-container {
+    padding: 15px;
+  }
+
+  .form-content {
+    padding: 35px 20px 25px;
+    border-radius: 10px;
+  }
+
+  .auth-header {
+    margin-bottom: 30px;
+  }
+
+  .gamer-title {
+    font-size: 28px;
+    letter-spacing: 1.5px;
+  }
+
+  .gamer-subtitle {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-top: 3px;
+  }
+
+  .header-divider {
+    width: 60px;
+    height: 2px;
+  }
+
+  .input-label {
+    font-size: 11px;
+    letter-spacing: 0px;
+  }
+
+  .icon-wrapper {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .gamer-input {
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .gamer-button {
+    padding: 12px 16px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-top: 8px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+  }
+
+  .auth-link {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+  }
+
+  .field-hint {
+    font-size: 11px;
+  }
+}
+
+/* ============ ACCESSIBILITY ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============ DARK MODE ============ */
+
+@media (prefers-color-scheme: dark) {
+  .gamer-form {
+    /* Already dark by default */
+  }
+}

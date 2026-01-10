@@ -1,0 +1,101 @@
+/* square card boxes */
+.selectable-card {
+  min-height: 300px;
+  background-color: rgba(20, 10, 40, 0.7);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15),
+              0 0 30px rgba(138, 43, 226, 0.08);
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.selectable-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), rgba(138, 43, 226, 0.06));
+}
+
+#no-hover:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25),
+              0 0 40px rgba(138, 43, 226, 0.15);
+}
+
+.selectable-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.35),
+              0 0 60px rgba(138, 43, 226, 0.2);
+  border-color: rgba(0, 255, 255, 0.5);
+  background-color: rgba(30, 15, 50, 0.8);
+}
+
+.selectable-card .card-content {
+  padding: 14px;
+  flex: 1 1 auto;
+  color: #ffffff;
+}
+
+.selectable-card .card-actions {
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectable-card.tint-glass-cyan {
+  background-color: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+/* cart cards */
+
+.collapsible-card {
+  color: #ffffff;
+  background-color: rgba(20, 10, 40, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+.collapsible-card:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25),
+              0 0 40px rgba(138, 43, 226, 0.15);
+  border-color: rgba(0, 255, 255, 0.4);
+}
+
+/* cart titles */
+
+.title-card {
+  color: #ffffff;
+  padding: 16px 18px;
+  background-color: rgba(20, 10, 40, 0.7);
+  border: 2px solid rgba(0, 255, 255, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+  transition: var(--transition);
+}
+
+.selectable-card.tint-glass-white {
+  background-color: rgba(20, 10, 40, 0.75);
+  border-color: rgba(0, 255, 255, 0.25);
+}
+
+.payable-cards {
+  background-color: rgba(20, 10, 40, 0.7);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  color: #ffffff;
+}
+
+@media (max-width: 800px) {
+  .selectable-card img { height: 160px; }
+  .selectable-card { min-height: auto; }
+}

@@ -1,0 +1,45 @@
+/* rounded card with hover effect */
+.rounded-card-parent {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  border-radius: 50px;
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+.rounded-card-parent:hover {
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+              0 0 50px rgba(138, 43, 226, 0.2);
+}
+
+.rounded-card {
+  color: #ffffff;
+  padding: 30px;
+  clip-path: inset(0px 0px round 50px 50px);
+  background-color: rgba(20, 10, 40, 0.8);
+  backdrop-filter: blur(10px);
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+  border: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+.rounded-card:hover {
+  clip-path: inset(0px 0px round 20px 20px);
+  background-color: rgba(30, 15, 50, 0.9);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.rounded-card.tint-glass-black {
+  background-color: rgba(20, 10, 40, 0.85);
+  border-color: rgba(0, 255, 255, 0.25);
+}
+.rounded-card.tint-glass-cyan {
+  background-color: rgba(0, 255, 255, 0.1);
+  border-color: rgba(0, 255, 255, 0.4);
+}
+.rounded-card.tint-glass-brown {
+  background-color: rgba(138, 43, 226, 0.1);
+  border-color: rgba(138, 43, 226, 0.3);
+}
+.rounded-card.blurer {
+  backdrop-filter: blur(20px);
+}

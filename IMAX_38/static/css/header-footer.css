@@ -1,0 +1,652 @@
+/* ============================================
+   HEADER & FOOTER GAMER THEME STYLING
+   Dark Purple/Blue with Cyan/Magenta Neon
+   ============================================ */
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes header-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.1),
+                inset 0 1px 0 rgba(0, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.15),
+                inset 0 1px 0 rgba(0, 255, 255, 0.1);
+  }
+}
+
+@keyframes button-hover-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+                0 0 20px rgba(138, 43, 226, 0.2);
+  }
+}
+
+@keyframes search-focus-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(138, 43, 226, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+                0 0 35px rgba(138, 43, 226, 0.25);
+  }
+}
+
+/* ============ HEADER STYLING ============ */
+
+.nav-wrapper {
+  position: relative;
+  height: 80px !important;
+}
+
+nav {
+  height: 80px !important;
+  line-height: 80px !important;
+  z-index: 5050;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, 
+    rgba(10, 5, 25, 0.98) 0%,
+    rgba(20, 10, 40, 0.96) 50%,
+    rgba(15, 8, 35, 0.98) 100%) !important;
+  backdrop-filter: blur(15px);
+  border-bottom: 2px solid rgba(0, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6),
+              0 0 20px rgba(0, 255, 255, 0.1),
+              inset 0 1px 0 rgba(0, 255, 255, 0.08);
+  animation: header-glow-pulse 4s ease-in-out infinite;
+}
+
+/* ============ LOGO STYLING ============ */
+
+.brand-logo {
+  height: 70px !important;
+  line-height: 80px;
+  padding: 5px 20px !important;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(120, 180, 255, 0.5));
+}
+
+.brand-logo:hover {
+  filter: drop-shadow(0 0 12px rgba(120, 180, 255, 0.7));
+  transform: scale(1.02);
+}
+
+/* Remove global nav pseudo-element/underline for the logo anchor only
+   This prevents the purple rectangular/underline artifact to the left
+   of the logo while preserving the image's own hover effects. */
+.logo-link::before {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Also ensure the anchor itself does not show outline/box-shadow on hover/focus
+   while leaving the `.brand-logo` image hover unchanged. */
+.logo-link:hover,
+.logo-link:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Keep the logo fixed at the top-left of the header while other items
+   remain vertically centered. The anchor is a flex-child of the nav wrapper,
+   so `align-self:flex-start` pulls it to the top edge without affecting
+   other centered nav items. */
+.logo-link {
+  display: inline-flex !important;
+  align-self: flex-start !important;
+  padding-top: 6px !important; /* small fine-tune - adjust if needed */
+  margin-left: 8px !important;
+}
+
+/* Prevent the image from inheriting line-height centering so it stays
+   flush with the top padding above. */
+.logo-link .brand-logo {
+  line-height: normal !important;
+  vertical-align: top !important;
+  padding-top: 0 !important;
+}
+
+/* ============ NAVIGATION LINKS ============ */
+
+nav a,
+nav li a,
+.nav a {
+  color: #ffffff !important;
+  padding: 8px 14px !important;
+  margin: 0 4px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+nav a::before,
+nav li a::before,
+.nav a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus,
+nav li a:hover,
+nav li a:focus,
+.nav a:hover,
+.nav a:focus {
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.15) 0%,
+    rgba(138, 43, 226, 0.08) 100%);
+  outline: none;
+  transform: translateY(-3px);
+  color: #00ffff !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3),
+              inset 0 0 15px rgba(0, 255, 255, 0.05);
+}
+
+nav a:hover::before,
+nav li a:hover::before,
+.nav a:hover::before {
+  width: 60%;
+}
+
+/* ============ PAGE UNDERLINE ============ */
+
+.page_underline {
+  font-weight: 700 !important;
+  color: #00ffff !important;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+  background: rgba(0, 255, 255, 0.1) !important;
+  border-bottom: 2px solid #00ffff !important;
+}
+
+/* ============ HEADER BUTTONS (Action Buttons) ============ */
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px !important;
+  margin: 0 6px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  transition: all 0.3s ease;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Primary buttons (Sign Up) */
+.header-btn.primary {
+  background: linear-gradient(135deg, #00ffff 0%, #00ff88 100%);
+  color: #0a0520 !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+              0 4px 12px rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+}
+
+.header-btn.primary:hover {
+  background: linear-gradient(135deg, #00ff88 0%, #00ffff 100%);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6),
+              0 6px 20px rgba(0, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Secondary buttons (Login, Logout) */
+.header-btn.secondary {
+  background: transparent;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(0, 255, 255, 0.4);
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.05);
+}
+
+.header-btn.secondary:hover {
+  background: rgba(0, 255, 255, 0.12);
+  border-color: rgba(0, 255, 255, 0.8);
+  color: #00ffff !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3),
+              inset 0 0 10px rgba(0, 255, 255, 0.1);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* ============ SEARCH BAR REDESIGN ============ */
+
+#search-bar {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 10px;
+  padding: 0 !important;
+  height: 44px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  line-height: 44px !important;
+}
+
+/* Use flex layout for the top-right nav list so all items share a single row
+   and are perfectly vertically aligned. */
+/* Make the nav inner wrapper a flex container so logo and nav list are centered */
+nav > .nav-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* Top-right nav list: inline flex row, center items vertically */
+nav .nav-wrapper > ul#nav-mobile {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* Ensure each list item centers content vertically without forcing height */
+nav .nav-wrapper > ul#nav-mobile > li {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+#search-bar form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  height: 100%;
+}
+
+#search-bar .row,
+.search-row {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+#autocomplete-input {
+  height: 44px !important;
+  min-width: 300px !important;
+  padding: 0 14px !important;
+  border-radius: 6px;
+  background: rgba(20, 10, 40, 0.85) !important;
+  border: 1.5px solid rgba(0, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: all 0.18s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.12), inset 0 0 6px rgba(0, 255, 255, 0.02);
+  line-height: 44px !important;
+  margin: 0 !important;
+  flex: 1;
+  max-width: 520px;
+}
+
+#autocomplete-input:focus {
+  background: rgba(25, 12, 45, 0.9) !important;
+  border-color: rgba(0, 255, 255, 0.6) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4),
+              0 0 30px rgba(138, 43, 226, 0.2),
+              inset 0 0 8px rgba(0, 255, 255, 0.08) !important;
+  outline: none !important;
+  color: #ffffff !important;
+}
+
+#autocomplete-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Search button */
+#search-bar button {
+  height: 44px !important;
+  width: 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.18) 0%, rgba(138, 43, 226, 0.08) 100%) !important;
+  border: 1.5px solid rgba(0, 255, 255, 0.28) !important;
+  color: #00ffff !important;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#search-bar button:hover {
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.3) 0%,
+    rgba(138, 43, 226, 0.15) 100%) !important;
+  border-color: rgba(0, 255, 255, 0.6) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4) !important;
+}
+
+#search-bar button i {
+  font-size: 20px;
+  margin: 0 !important;
+}
+
+/* ============ CART BADGE ============ */
+
+.badge {
+  background: transparent !important;
+  color: #00ffff !important;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 0 6px !important;
+  border-radius: 0 !important;
+  position: relative;
+  top: 0;
+  box-shadow: none !important;
+  margin-left: 6px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+/* ============ RESPONSIVE HEADER ============ */
+
+@media (max-width: 1024px) {
+  nav {
+    height: 70px !important;
+    line-height: 70px !important;
+  }
+
+  .nav-wrapper {
+    height: 70px !important;
+  }
+
+  .brand-logo {
+    height: 60px !important;
+    line-height: 70px;
+    padding: 5px 15px !important;
+  }
+
+  #search-bar {
+    height: 50px;
+    top: 3px; /* slightly smaller nudge for reduced header height */
+  }
+
+  #search-bar .row {
+    height: 100%;
+  }
+
+  #autocomplete-input {
+    height: 40px !important;
+    font-size: 12px !important;
+    padding: 0 12px !important;
+    line-height: 40px !important;
+  }
+
+  #search-bar button {
+    height: 40px !important;
+    width: 44px !important;
+    border-radius: 6px;
+  }
+
+  nav a,
+  nav li a,
+  .nav a {
+    padding: 6px 10px !important;
+    font-size: 12px;
+    margin: 0 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    height: 60px !important;
+    line-height: 60px !important;
+  }
+
+  .nav-wrapper {
+    height: 60px !important;
+  }
+
+  .brand-logo {
+    height: 50px !important;
+    line-height: 60px;
+    padding: 5px 12px !important;
+  }
+
+  #search-bar {
+    display: none !important;
+  }
+
+  nav a,
+  nav li a,
+  .nav a {
+    padding: 4px 8px !important;
+    font-size: 11px;
+    margin: 0 1px;
+  }
+
+  .header-btn {
+    padding: 8px 12px !important;
+    font-size: 10px;
+    margin: 0 3px;
+  }
+}
+
+/* ============ FOOTER STYLING ============ */
+
+.page-footer {
+  background: linear-gradient(180deg,
+    rgba(10, 5, 25, 0.95) 0%,
+    rgba(15, 8, 35, 0.97) 100%) !important;
+  border-top: 2px solid rgba(0, 255, 255, 0.25);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4),
+              0 -4px 20px rgba(0, 255, 255, 0.08);
+  margin-top: 120px;
+  padding-top: 40px !important;
+}
+
+/* Footer gradient line animation */
+.page-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #00ffff 25%,
+    #ff00ff 50%,
+    #00ffff 75%,
+    transparent 100%);
+  opacity: 0.6;
+}
+
+/* Footer text styling */
+.page-footer h4,
+.page-footer h5 {
+  font-weight: 700 !important;
+  color: #00ffff !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.page-footer p {
+  color: rgba(255, 255, 255, 0.75) !important;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.page-footer a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.page-footer a:hover {
+  color: #00ffff !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.page-footer .white-text {
+  color: #ffffff !important;
+}
+
+.page-footer .grey-text {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.page-footer .black-text {
+  color: #0a0520 !important;
+}
+
+/* Footer divider */
+.page-footer .divider {
+  background-color: rgba(0, 255, 255, 0.1) !important;
+}
+
+/* Footer buttons (social) */
+.page-footer .btn {
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.15) 0%,
+    rgba(138, 43, 226, 0.1) 100%) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.page-footer .btn:hover {
+  background: linear-gradient(135deg,
+    rgba(0, 255, 255, 0.25) 0%,
+    rgba(138, 43, 226, 0.15) 100%) !important;
+  color: #00ffff !important;
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* Footer copyright section */
+.footer-copyright {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-top: 1px solid rgba(0, 255, 255, 0.15);
+  padding: 20px 0 !important;
+  margin-top: 30px !important;
+  text-align: center;
+}
+
+.footer-copyright .wide-container {
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  padding-top: 12px;
+}
+
+/* Footer dropdown */
+.page-footer .dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.page-footer .dropdown-trigger i {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.page-footer .dropdown-trigger:hover i {
+  transform: rotate(180deg);
+}
+
+.page-footer .dropdown-content {
+  background: rgba(240, 240, 240, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.page-footer .dropdown-content li a {
+  color: #0a0520 !important;
+  transition: all 0.3s ease;
+}
+
+.page-footer .dropdown-content li a:hover {
+  background: rgba(0, 255, 255, 0.1) !important;
+  color: #0a0520 !important;
+  padding-left: 24px;
+}
+
+/* ============ RESPONSIVE FOOTER ============ */
+
+@media (max-width: 768px) {
+  .page-footer {
+    margin-top: 60px;
+    padding-top: 30px !important;
+  }
+
+  .page-footer h4,
+  .page-footer h5 {
+    font-size: 14px;
+    margin-bottom: 10px !important;
+  }
+
+  .page-footer p {
+    font-size: 12px;
+  }
+
+  .page-footer .btn {
+    padding: 8px 12px !important;
+    font-size: 10px;
+    margin: 4px 2px !important;
+  }
+
+  .footer-copyright {
+    padding: 15px 0 !important;
+    margin-top: 20px !important;
+  }
+}
+
+/* ============ ACCESSIBILITY ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  nav,
+  nav a,
+  .header-btn,
+  .page-footer,
+  .page-footer a,
+  .page-footer .btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
